@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Input Data Penduduk</title>
+</head>
+<body>
+    <h2>Form Input Data Penduduk</h2>
+
+    <form action="input.php" onsubmit="return validateForm(event)" method="post">
+        <label for="kec">Kecamatan:</label><br>
+        <input type="text" id="kec" name="kecamatan"><br><br>
+
+        <label for="long">Longitude:</label><br>
+        <input type="text" id="long" name="longitude"><br><br>
+
+        <label for="lat">Latitude:</label><br>
+        <input type="text" id="lat" name="latitude"><br><br>
+
+        <label for="luas">Luas:</label><br>
+        <input type="text" id="luas" name="luas"><br><br>
+
+        <label for="jml_ppdk">Jumlah Penduduk:</label><br>
+        <input type="text" id="jml_ppdk" name="jumlah_penduduk"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+    function validateForm(event) {
+        let kec = document.getElementById("kec").value;
+        let luas = document.getElementById("luas").value;
+        let jml = document.getElementById("jml_ppdk").value;
+        let text = "";
+
+        if (kec.trim() === "") {
+            text = "Nama kecamatan tidak boleh kosong!";
+            event.preventDefault();
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+
+        if(isNaN(luas) || luas === "" || parseFloat(luas) <= 0) {
+            text = "Data luas harus berupa angka dan tidak boleh bernilai negatif atau nol!";
+            event.preventDefault();
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+
+        if(isNaN(jml) || jml === "" || parseInt(jml) <= 0) {
+            text = "Jumlah penduduk harus berupa angka bernilai positif!";
+            event.preventDefault();
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+
+    return true;
+    }
+</script>
+</body>
+</html>
